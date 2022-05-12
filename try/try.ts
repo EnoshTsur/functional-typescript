@@ -4,13 +4,15 @@ import Optional from '../optional/optional';
 import Either from '../either/either';
 
 abstract class Try<T> {
-	
+
+	protected constructor() {}
+
 	static of = <T>(supplier: Supplier<T>) => {
 		requireNonNull(supplier);
 		try {
 			return new Success<T>(supplier());
 		} catch (error) {
-			return new Failure<T>(error);
+			return new Failure<T>(`${error}`);
 		}
 	}
 
@@ -20,7 +22,7 @@ abstract class Try<T> {
 			runnable();
 			return new Success<T>({} as T);
 		} catch (error) {
-			return new Failure<T>(error);
+			return new Failure<T>(`${error}`);
 		}
 	}
 
@@ -50,7 +52,7 @@ abstract class Try<T> {
 			consumer(this.get());
 			return new Success<T>(this.get());
 		} catch (error) {
-			return new Failure<T>(error);
+			return new Failure<T>(`${error}`);
 		}
 	}
 
@@ -63,7 +65,7 @@ abstract class Try<T> {
 			runnable();
 			return new Success<T>(this.get());
 		} catch (error) {
-			return new Failure<T>(error);
+			return new Failure<T>(`${error}`);
 		}
 	}
 
@@ -82,7 +84,7 @@ abstract class Try<T> {
 			
 			  return new Failure<T>(message);
 		} catch (error) {
-			return new Failure<T>(error);
+			return new Failure<T>(`${error}`);
 		}
 	}
 
@@ -99,7 +101,7 @@ abstract class Try<T> {
 		try {
 			return mapper(this.get()) as Success<U>;
 		} catch (error) {
-			return new Failure<U>(error);
+			return new Failure<U>(`${error}`);
 		}
 	}
 
@@ -111,7 +113,7 @@ abstract class Try<T> {
 		try {
 			return new Success<U>(mapper(this.get()));
 		} catch (error) {
-			return new Failure<U>(error);
+			return new Failure<U>(`${error}`);
 		}
 	}
 
