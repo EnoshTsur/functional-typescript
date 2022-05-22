@@ -1,11 +1,18 @@
 {
-  "name": "functional",
+  "name": "typescript-fp-monads",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Enosh-Tsur",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
 }
